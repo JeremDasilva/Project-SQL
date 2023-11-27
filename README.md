@@ -1,101 +1,40 @@
-<img src="https://bit.ly/2VnXWr2" alt="Ironhack Logo" width="100"/>
+# *SQL Project*
 
-# Project: Competitive Landscape
+You were hired by Ironhack to perform an Analytics Consulting Project entitled: competitive landscape.
 
-## Content
+Your mission is to create and populate an appropriate database with many coding schools that are our competition, as well as design an suitable queries that answer business questions of interest (to be defined by you)
 
-- [Project Overview](#project-overview)
-- [Getting Started](#getting-started)
-- [Project Deliverables](#deliverables)
+TEAM : Jeremy DA SILVA, Javier GUIRAO, Christina CIMINI, Raghda IBRAHIM
 
-<a name="project-overview"></a>
+# Part 1 : Web scrapping and data preparation
 
-## Project Overview
+We manually scrapped data for the most commented schools from switchup website. A further improvement would be to scrapp the entire website.
 
-You were hired by Ironhack to perform an analytics consulting project to understand Ironhack's competitive landscape: which other coding schools are there and what drives their success or lack thereof relative to Ironhack.
+Once the data gathered, some cleaning where needed. First of all it was pure cleaning : removing columns and cleaning the cells. After that, and alongside designing the database, changing the types of some columns in order to fit in the database.
 
-Your mission is to design, create and populate an appropriate database with information about coding schools that are our competition, as well as design suitable queries that answer business questions of interest (to be defined by you).
+There is also a few aggregation inn the Jupyter notebook that helped us to answer the business question.
 
----
+# Part 2 : Data base architecture and seeding
 
-<a name="project-overview"></a>
+We created an SQL schema and 5 different tables which were populated with the data obtained through the web scraping process. To do so, we carefully matched the data types between the SQL tables and the dataframe columns. Also, we added unique IDs to the tables that didn’t have one, and set that column as the primary key.
 
-## Getting Started
+For the table relationships, we decided to use the school_id as the foreign key for all the tables since it was the common field across them.
 
-The notebook attached to the project connects to a bootcamp review website (www.switchup.com) and scrapes some information into dataframes. This will be the basis of the information to design your database. Read the script and get a general understanding each function. Comment the code appropriately.
+The data populating process followed three steps:
+  1. Connecting the SQL schema to our Jupyter Notebook using mysql.connector
+  2. Storing the dataframe columns in lists
+  3. Inserting the data into the SQL tables using the iterrows function
 
-*   Populate the list of schools with a wider variety of schools (how are you going to get the school ID?)
+The final ERD looks like this:
 
-* Take a look at the obtained dataframes. What dimensions do you have? What can work as useful metrics? What keys do you have? How could the different dataframes be connected?
+![SQL Schema](Diagram.png)
 
-* Go back to the drawing board and try to create an entity relationship diagram for tables available
+# Part 3 : Business answer
 
-* Once you have the schemas you want, you will need to:
-  - Create the suitable SQL queries to create the tables and populate them
-  - Run these queries using the appropriate Python connectors
-  - Crucial hint: check out the following tutorial:
-https://www.dataquest.io/blog/sql-insert-tutorial/
-  
+As per one of the deliverable of the project, we had to fulfill a data analyst job for Ironhack.
+After looking at the data what we can exract for them, we decided to look at where Ironhack is perfoming or not, in order to make improvment and/or take inspiration from the best rated.
+And secondly we wanted to look at where Ironhack competitor are not performing in order to advice Ironhack a new bootcamp to develop
 
----
+# Part 4 : Data visualisation
 
-<a name="deliverables"></a>
-
-## Project Deliverables
-
-We will henceforth list the requirements for each project in three groupings to help you prioritize your work
-
-* MVP (Minimum Viable Product): these are the absolute minimum requirements that you will have to achieve for your project to be considered completed. *They should absolutely be your priority* as failure to meet these requirements means an insufficient delivery, even if you go above and beyond on other requirements. Plan around unforesseable situations to make sure you have time to at least deliver the MVP. A good way of doing this is to plan on having the MVP well in advance of the deadline for the project.
-
-* Expected improvements: these are suggestions on how to improve your product, features that are not critical but that we expect most students to be able to deliver *some* of these features. They will often be stated in more open-ended description so that you can customize and differentiate your project and make it a tailored part of your portfolio.
-
-* Nice-to-haves: these are suggestions on how to go above and beyond. We do *not* expect your products to contain these features / use these technologies (but we will not actively discourage you from pursuing them as well). The nice-to-haves exist more to help you find resources that may not be taught in class and put some icing on your product, potentially even *after* the bootcamp.
-
-The Deliverables for this project are:
-
-#### Minimum Viable Product
-
-[ ] Files that contain your solution submitted via a GitHub repo
-
-  - .py or .ipnby files to extract and transform the data scraped in the attached notebook as well as running the business analysis
-
-  - An exported .sql file with the final schema
-  
-  - A README.md file with explanation fo the project goals, methodology and ERD
-
-[ ] A presentation that showcases your product
-
-  - The presentation includes a business analysis built on top of your database where clear business hypotheses should be tested and some actionable conclusion must be presented
-
-  - The presentation includes a component about design choices for your database, with at least a presentation of the final ERD
-
-  - The presentation includes a component about technical challenges faced
-
-#### Expected improvements
-
-[ ] Additional depth in business analysis
-
-  - Deeper data gathering: more of the same datapoints (schools, locations, comments) AND/OR different data points (prices, recommendations, etc) 
-
-  - Enriching data gathering: more sources of data (e.g. demographics by city, salaries per country etc.)
-
-  - Multi-layered questions: use your answers to basic hypotheses to generate more refined hypotheses (which may require more sophisticated scraping/ETL)
-
-  - Charting: use visual intuition to drive your analysis
-
-
-[ ] Improved engineering and design of your solution
-
-  - Deployment of the solution to a cloud database
-
-  - Creation of auxiliary functions that test the database for data quality issues
-
-
-#### Nice-to-haves
-
-[ ] Improved engineering of solution
-
-  - Encoding of primary key - foreign key relation in database design
-
-  - Differential update of database (include only most recent data when you re-run the script)
-
+For this last part, we wanted to visualise on a chart the performances of Ironhack accross all it's bootcamp
